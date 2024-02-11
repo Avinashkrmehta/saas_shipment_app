@@ -50,7 +50,7 @@ development - http://localhost:3000
 production - https://saas-shipment-app.onrender.com
 ```
 ## View Screenshots of Website
-[View Images]([relative/path/to/your/folder](https://github.com/Avinashkrmehta/saas_shipment_app/tree/main/screens))
+[View Images](https://github.com/Avinashkrmehta/saas_shipment_app/tree/main/screens)
 
 ## Usage
 
