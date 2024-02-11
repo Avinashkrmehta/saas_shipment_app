@@ -15,7 +15,7 @@ services:
     envVars:
       - key: postgres://saas_shipment_app:2LVHW4IOdLOEGKY2nUYlAZFfcQqmR0RJ@dpg-cn45b6q1hbls73af0l6g-a/saas_shipment_app_production
         fromDatabase:
-          name: mysite
+          name: saas_shipment_app_production
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
