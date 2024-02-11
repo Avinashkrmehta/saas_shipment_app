@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SHIPMENT APP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SHIPMENT APP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <% if current_user && current_user.role == 'admin' %>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <% if current_user && current_user.role == 'admin' %>
+                <li class="nav-item">
+                  <%= link_to "Customers", app_users_path, class: "nav-link" %>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to "Shipments", shipments_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Delivery Partner", app_users_path(role: 'delivery_partner'), class: "nav-link" %>
+              </li>
+            </ul>
+              <span class="navbar-text mx-auto badge bg-info ">Admin- <%=current_user.name%></span>
+          <%elsif current_user &&  current_user.role == 'customer'%>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <%= link_to "Shipments", shipments_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Delivery Partner", app_users_path(role: 'delivery_partner'), class: "nav-link" %>
+                </li>
+              </ul>
+              <span class="navbar-text mx-auto badge bg-info ">Customer- <%=current_user.name%></span>
+          <%elsif current_user &&  current_user.role == 'delivery_partner'%>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <%= link_to "Shipments", shipments_path, class: "nav-link" %>
+                </li>
+              </ul>
+              <span class="navbar-text mx-auto badge bg-info ">Delivery Partner - <%=current_user.name%></span>
+        <% end %>
+          <form >
+            <% if user_signed_in? %>
+              <!-- If user is signed in, display logout link -->
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-success" %>
+            <%# else %>
+              <!-- If user is not signed in, display login link -->
+              <%#= link_to "Sign up", new_user_registration_path ,class: "btn btn-outline-success" %>
+              <%#= link_to "Sign In", new_user_session_path, class: "btn btn-outline-success" %>
+            <% end %>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= flash[:notice] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
+    <% if flash[:alert].present? %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= flash[:alert] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!-- app/views/shipments/index.html.erb -->
+<div class="container">
+  <h1>All Shipments</h1>
+  <%if current_user.admin? || current_user.customer?%>
+    <%= link_to "New Shipment", new_shipment_path, class: "btn btn-primary mb-3" %>
+  <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Source Location</th>
+        <th>Target Location</th>
+        <th>Item</th>
+        <th>Status</th>
+        <th>Delivery Partner</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipments.each do |shipment| %>
+        <tr>
+          <td><%= shipment.source_location %></td>
+          <td><%= shipment.target_location %></td>
+          <td><%= shipment.item %></td>
+          <td><%= shipment.status %></td>
+          <td><%= shipment.delivery_partner.name %></td>
+          <td>
+            <%= link_to "Edit", edit_shipment_path(shipment), class: "btn btn-primary btn-sm" %>
+            <%if current_user.admin?%>
+              <%= link_to 'Destroy', shipment_path(shipment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
