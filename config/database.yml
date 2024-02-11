@@ -25,6 +25,7 @@ development:
   username: postgres_admin
   password: postgres
   host: localhost
+  # url: postgres://saas_shipment_app:2LVHW4IOdLOEGKY2nUYlAZFfcQqmR0RJ@dpg-cn45b6q1hbls73af0l6g-a.oregon-postgres.render.com/saas_shipment_app_production
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -86,4 +87,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: postgres://saas_shipment_app:2LVHW4IOdLOEGKY2nUYlAZFfcQqmR0RJ@dpg-cn45b6q1hbls73af0l6g-a.oregon-postgres.render.com/saas_shipment_app_production
