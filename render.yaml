@@ -13,7 +13,7 @@ services:
     # preDeployCommand: "./bin/rails db:migrate" # preDeployCommand only available on paid instance types
     startCommand: "./bin/rails server"
     envVars:
-      - key: postgres://saas_shipment_app:2LVHW4IOdLOEGKY2nUYlAZFfcQqmR0RJ@dpg-cn45b6q1hbls73af0l6g-a/saas_shipment_app_production
+      - key: DATABASE_URL
         fromDatabase:
           name: saas_shipment_app_production
           property: connectionString
