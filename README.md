@@ -22,26 +22,34 @@ This project is a SaaS (Software as a Service) solution for managing shipments. 
 ## Setup
 
 1. Clone the repository:
-
+```ruby
  git clone <repository_url>
-
+```
 
 2. Install dependencies:
-
+```ruby
  bundle install
-
+```
 
 3. Set up the database:
+```ruby
 rails db:create
 rails db:migrate
-
+```
 
 4. Run the Rails server:
-
+```ruby
 rails server
+```
 
+5. Access the application in your browser at
+```ruby
+development - http://localhost:3000
+```
+```ruby
+production - https://saas-shipment-app.onrender.com
+```
 
-5. Access the application in your browser at `http://localhost:3000`.
 
 ## Usage
 
