@@ -26,6 +26,7 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = current_user.shipments.build(shipment_params)
+    # binding.pry
     if @shipment.save
       redirect_to shipments_path, notice: 'Shipment was successfully created.'
     else

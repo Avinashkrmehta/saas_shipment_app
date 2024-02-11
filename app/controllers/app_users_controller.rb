@@ -6,7 +6,7 @@ class AppUsersController < ApplicationController
     if params[:role] == 'delivery_partner'
       @users = AppUser.delivery_partners
     else
-      @users = AppUser.all
+      @users = AppUser.customers_and_delivery_partners
     end
   end
 
@@ -20,6 +20,7 @@ class AppUsersController < ApplicationController
 
   def create
     @user = AppUser.new(app_users_params)
+    @user.onboarded = false
     if @user.save
       flash[:notice] = 'User was successfully created.'
       redirect_to app_users_path
@@ -72,7 +73,7 @@ class AppUsersController < ApplicationController
     @user = User.find(params[:id])
       if @user.onboarded == false
         flash[:notice] = 'User is already off-boarded' 
-      elsif @user.update(onboarded: true)
+      elsif @user.update(onboarded: false)
          flash[:notice] = 'User off-boarded successfully'
       else
        flash[:alert] = @user.errors.full_messages.to_sentence

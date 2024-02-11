@@ -22,7 +22,7 @@
           <td><%= shipment.target_location %></td>
           <td><%= shipment.item %></td>
           <td><%= shipment.status %></td>
-          <td><%= shipment.delivery_partner.name %></td>
+          <td><%= shipment.delivery_partner.try(:name) %></td>
           <td>
             <%= link_to "Edit", edit_shipment_path(shipment), class: "btn btn-primary btn-sm" %>
             <%if current_user.admin?%>
